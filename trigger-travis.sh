@@ -10,9 +10,9 @@ BRANCH=$4
 MESSAGE=$5
 
 # login to travis and get token
-travis login --skip-completion-check --github-token $TRAVIS_ACCESS_TOKEN
+travis login --skip-completion-check --pro --github-token $TRAVIS_ACCESS_TOKEN
 travis whoami --skip-completion-check
-TOKEN=$(travis token --skip-completion-check)
+TOKEN=$(travis token --skip-completion-check --pro)
 IFS=' ' read -r -a array <<< "$TOKEN"
 TOKEN=${array[${#array[@]}-1]}
 
@@ -45,7 +45,7 @@ curl -s -X POST \
   -H "Travis-API-Version: 3" \
   -H "Authorization: token ${TOKEN}" \
   -d "$BODY" \
-  https://api.travis-ci.org/repo/${USER}%2F${REPO}/requests \
+  https://api.travis-ci.com/repo/${USER}%2F${REPO}/requests \
   | tee /tmp/travis-request-output.$$.txt
 
 if grep -q '"@type": "error"' /tmp/travis-request-output.$$.txt; then

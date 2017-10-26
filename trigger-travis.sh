@@ -26,7 +26,7 @@ fi
 # for debugging
 echo "USER=$USER"
 echo "REPO=$REPO"
-#echo "TOKEN: ${array[${#array[@]}-1]}"
+echo "TOKEN: ${array[${#array[@]}-1]}"
 echo "BRANCH=$BRANCH"
 echo "MESSAGE=$MESSAGE"
 
